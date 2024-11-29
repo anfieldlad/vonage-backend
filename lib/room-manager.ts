@@ -25,7 +25,7 @@ export const getSessionForRoom = async (roomName: string): Promise<string> => {
 export const getTokenForRoom = async (
   roomName: string,
   userName: string,
-  role = 'publisher'
+  role: string
 ): Promise<{ sessionId: string; token: string }> => {
   const sessionId = await getSessionForRoom(roomName);
   const token = generateToken(sessionId, role);
