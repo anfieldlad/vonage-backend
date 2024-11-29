@@ -15,13 +15,16 @@ const vonage = new Vonage(auth);
 export default async function handler(req: VercelRequest, res: VercelResponse): Promise<void> {
   if (req.method === 'GET') {
     try {
-      console.log('Creating Vonage session with MediaMode.ROUTED...');
-      const session = await vonage.video.createSession({ mediaMode: MediaMode.ROUTED });
+      console.log('Creating Vonage session...');
+      const session = await vonage.video.createSession({ mediaMode: MediaMode.RELAYED });
       console.log('Session created successfully:', session.sessionId);
       res.status(200).json({ sessionId: session.sessionId });
     } catch (error) {
       console.error('Error creating session:', error);
-      res.status(500).json({ error: error.message });
+      res.status(500).json({
+        error: error.message,
+        details: error.response ? await error.response.text() : 'No response body',
+      });
     }
   } else {
     res.status(405).json({ error: 'Method not allowed' });
