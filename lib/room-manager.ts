@@ -28,6 +28,6 @@ export const getTokenForRoom = async (
   role: string
 ): Promise<{ sessionId: string; token: string }> => {
   const sessionId = await getSessionForRoom(roomName);
-  const token = generateToken(sessionId, role);
+  const token = generateToken(sessionId, role, userName);
   return { sessionId, token };
 };

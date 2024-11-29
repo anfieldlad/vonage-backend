@@ -25,10 +25,11 @@ const generateSession = async (mediaMode: MediaMode = MediaMode.ROUTED) => {
  * @param expireTime - Optional expiration timestamp (in seconds since epoch).
  * @returns The generated token.
  */
-const generateToken = (sessionId: string, role: string, expireTime?: number) => {
+const generateToken = (sessionId: string, role: string, userName: string, expireTime?: number) => {
   return vonage.video.generateClientToken(sessionId, {
     role,
     expireTime: expireTime || Math.floor(Date.now() / 1000) + 3600, // Default to 1 hour from now
+    data: JSON.stringify({ name: userName })
   });
 };
 
