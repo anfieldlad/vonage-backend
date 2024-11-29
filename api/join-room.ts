@@ -22,8 +22,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse): 
     }
 
     try {
+      // Call existing function to get sessionId and token
       const { sessionId, token } = await getTokenForRoom(roomName, userName, role || 'publisher');
-      res.status(200).json({ roomName, sessionId, token });
+
+      // Respond with the API Key, sessionId, and token
+      res.status(200).json({
+        apiKey: process.env.VONAGE_API_KEY, // Include the API Key in the response
+        roomName,
+        sessionId,
+        token,
+      });
     } catch (error) {
       console.error('Error joining room:', error);
       res.status(500).json({ error: error.message });
