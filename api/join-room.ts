@@ -27,7 +27,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse): 
 
       // Respond with the API Key, sessionId, and token
       res.status(200).json({
-        apiKey: Buffer.from(process.env.VONAGE_PRIVATE_KEY || '', 'base64').toString('ascii'), // Include the API Key in the response
         roomName,
         sessionId,
         token,
