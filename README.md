@@ -2,7 +2,7 @@
 
 This is the backend for managing video calls using the [Vonage Video API](https://www.vonage.com/communications-apis/video/). Built with **Node.js** and **TypeScript**, this backend provides APIs for session creation, token generation, and other server-side processes required for managing video calls.
 
-This backend works together with the [Vonage Video Call Frontend](https://github.com/anfieldlad/vonage-video-frontend) to create a full video calling solution.
+This backend works together with the [Vonage Video Call Frontend](https://github.com/anfieldlad/vonage-frontend) to create a full video calling solution.
 
 ## Features
 
