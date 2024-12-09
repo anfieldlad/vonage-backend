@@ -1,6 +1,7 @@
 import { Vonage } from '@vonage/server-sdk';
 import { Auth } from '@vonage/auth';
 import { MediaMode } from '@vonage/video';
+import { ArchiveMode } from '@vonage/video';
 
 const auth = new Auth({
   applicationId: process.env.VONAGE_APPLICATION_ID || '',
@@ -14,8 +15,8 @@ const vonage = new Vonage(auth);
  * @param mediaMode - The media mode (ROUTED or RELAYED).
  * @returns The created session.
  */
-const generateSession = async (mediaMode: MediaMode = MediaMode.ROUTED) => {
-  return await vonage.video.createSession({ mediaMode });
+const generateSession = async (mediaMode: MediaMode = MediaMode.ROUTED, archiveMode: ArchiveMode = ArchiveMode.ALWAYS) => {
+  return await vonage.video.createSession({ archiveMode, mediaMode });
 };
 
 /**
